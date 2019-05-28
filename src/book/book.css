@@ -1,4 +1,21 @@
 .book {
-    padding: 10px;
+    padding: 20px;
     border: 1px solid grey;
+    display: flex;
+}
+
+.book__thumbnail {
+    width: 130px;
+    height: 100%;
+    margin-right: 25px;
+    flex-basis: 1;
+}
+
+.book__details {
+    text-align: left;
+    flex-basis: 3;
+}
+
+.book__details h2 {
+    margin-top: 0;
 }

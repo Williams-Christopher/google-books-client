@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header/header';
 import SearchApp from './searchApp/searchApp';
+import './App.css';
 
 function App() {
   return (
