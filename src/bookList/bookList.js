@@ -14,13 +14,13 @@ class BookList extends React.Component {
                     thumbnail={book.volumeInfo.imageLinks.thumbnail}
                     description={book.volumeInfo.description}
                     previewLink={book.volumeInfo.previewLink}
+                    price={'listPrice' in book.saleInfo ? book.saleInfo.listPrice.amount : ''}
                 />
             );
         });
 
         return (
             <section className='book_list'>
-                <p>BookList component placeholder text</p>
                 {books}
             </section>
         );
