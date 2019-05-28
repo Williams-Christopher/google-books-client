@@ -1,8 +1,12 @@
 import React from 'react';
+import Header from './header/header';
+import SearchApp from './searchApp/searchApp';
+
 function App() {
   return (
     <main className='App'>
-      {/* content goes here */}
+      <Header />
+      <SearchApp />
     </main>
   );
 }
