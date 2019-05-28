@@ -4,19 +4,24 @@ import Book from '../book/book';
 
 class BookList extends React.Component {
     render() {
-        // let books = this.props.books.map((book, i) => {
-        //     return (
-        //         <Book className='book-from-booklist'
-        //             key={i}
-        //             title={{title} = book.volumeInfo}
-        //         />
-        //     );
-        // });
+        let books = this.props.books.map((book, i) => {
+            console.log(book);
+            return (
+                <Book
+                    key={i}
+                    title={book.volumeInfo.title}
+                    authors={book.volumeInfo.authors[0]}
+                    thumbnail={book.volumeInfo.imageLinks.thumbnail}
+                    description={book.volumeInfo.description}
+                    previewLink={book.volumeInfo.previewLink}
+                />
+            );
+        });
 
         return (
             <section className='book_list'>
                 <p>BookList component placeholder text</p>
-                <Book title={'Lorem Ipsum'} authors={'I.P. Freely'} price={29.34}description={'A lovely journey through the events that led to the classic book, Yellow Pools.'} />
+                {books}
             </section>
         );
     }
