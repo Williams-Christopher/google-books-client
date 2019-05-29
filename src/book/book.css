@@ -19,3 +19,13 @@
 .book__details h2 {
     margin-top: 0;
 }
+
+.book__preview_link:link, .book__preview_link:visited, .book__preview_link:hover, .book__preview_link:active {
+    color: teal;
+    text-decoration: none;
+}
+
+.book__preview_link:hover {
+    color: tomato;
+    font-weight: bold;
+}

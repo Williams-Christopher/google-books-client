@@ -10,6 +10,7 @@ function Book(props) {
                 <p>{props.authors}</p>
                 <p>{props.price}</p>
                 <p>{props.description}</p>
+                <a className='book__preview_link' href={props.previewLink} rel='noopener noreferrer' target='_empty'>View at Google Books</a>
             </div>
         </article>
     );
