@@ -12,19 +12,48 @@ export default class SearchApp extends React.Component {
         this.state = {
             items: [],
             error: null,
-            searchTerm: 'computers',
+            searchTerm: '',
             printType: 'all', //all, book, magazines
             bookType: 'no-filter', //partial, full, free-ebooks, paid-ebooks, ebooks
+            maxResults: 10,
         };
     }
 
-    componentDidMount() {
+    updatePrintType(val) {
+        this.setState({
+            printType: val,
+        });
+    }
+
+    updateBookType(val) {
+        this.setState({
+            bookType: val,
+        });
+    }
+
+    updateSearchTerm(val) {
+        this.setState({
+            searchTerm: val,
+        });
+    }
+
+    handleFormSubmit(e) {
+        e.preventDefault();
+
+        // Don't make API request if searchTerm is empty
+        if(this.state.searchTerm === '') {
+            this.setState({
+                error: new Error('Please enter a search term.'),
+            });
+            return;
+        }
+
         // Setup query parameters and coonstruct URL
         const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
         let term = encodeURIComponent(this.state.searchTerm);
         let queryFilter = this.state.bookType !== 'no-filter' ? `&filter=${this.state.bookType}` : '';
         let printType = `&printType=${this.state.printType}`;
-        const maxResults = `&maxResults=10`;
+        let maxResults = `&maxResults=${this.state.maxResults}`;
         
         let queryUrl = `${baseUrl}?q=${term}${queryFilter}${printType}${maxResults}`;
 
@@ -54,10 +83,15 @@ export default class SearchApp extends React.Component {
     render() {
         return (
             <section className='search_client'>
-                <SearchBar />
+                <SearchBar
+                    updateSearchTerm={val => this.updateSearchTerm(val)}
+                    updatePrintType={val => this.updatePrintType(val)}
+                    updateBookType={val => this.updateBookType(val)}
+                    handleFormSubmit={e => this.handleFormSubmit(e)}
+                />
                 {!(this.state.error)
                         ? <BookList books={this.state.items} />
-                        : <div className='error'>An error occurred. Please try again later. Error: {this.state.error.message}</div>
+                        : <div className='error'>An error occurred. Error: {this.state.error.message}</div>
                 }
             </section>
         );
