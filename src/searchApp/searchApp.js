@@ -31,6 +31,12 @@ export default class SearchApp extends React.Component {
         });
     }
 
+    updateMaxResults(val) {
+        this.setState({
+            maxResults: val,
+        });
+    }
+
     updateSearchTerm(val) {
         this.setState({
             searchTerm: val,
@@ -87,6 +93,8 @@ export default class SearchApp extends React.Component {
                     updateSearchTerm={val => this.updateSearchTerm(val)}
                     updatePrintType={val => this.updatePrintType(val)}
                     updateBookType={val => this.updateBookType(val)}
+                    updateMaxResults={val => this.updateMaxResults(val)}
+                    maxResults={this.state.maxResults}
                     handleFormSubmit={e => this.handleFormSubmit(e)}
                 />
                 {!(this.state.error)
