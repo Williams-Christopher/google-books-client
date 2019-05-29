@@ -174,16 +174,32 @@ const items = [
 ];
 
 export default class SearchApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: [],
+            error: false,
+            printType: 'all',
+            bookType: 'no-filter',
+        };
+    }
+
+    componentDidMount() {
+        this.setState({
+            items,
+        });
+    }
+
     render() {
         return (
             <section className='search_client'>
                 <SearchBar />
-                <BookList books={items} />
+                <BookList books={this.state.items} />
             </section>
         );
     }
 }
 
 SearchApp.defaultProps = {
-    item: [],
+    items: [],
 };

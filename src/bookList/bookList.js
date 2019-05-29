@@ -5,7 +5,6 @@ import Book from '../book/book';
 class BookList extends React.Component {
     render() {
         let books = this.props.books.map((book, i) => {
-            console.log(book);
             return (
                 <Book
                     key={i}
