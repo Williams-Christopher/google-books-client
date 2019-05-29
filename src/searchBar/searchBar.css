@@ -1,0 +1,21 @@
+.search_bar {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.search_bar div {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.search_bar__term {
+    background-color: darkgrey;
+}
+
+.search_bar__filters {
+    background-color: lightgrey;
+}
+
+select {
+    margin-right: 20px;
+}
