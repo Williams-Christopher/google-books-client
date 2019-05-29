@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
                         <option value='ebooks'>Any ebooks</option>
                     </select>
                     <label htmlFor='max-results'>Max Results: </label>
-                    <input type='number' name='max-results' id='max-results' value={this.props.maxResults} min='1' max='50' onChange={e => this.props.updateMaxResults(e.target.value)} />
+                    <input type='number' name='max-results' id='max-results' value={this.props.maxResults} min='1' max='40' onChange={e => this.props.updateMaxResults(e.target.value)} />
                 </div>  
             </section>
         );
