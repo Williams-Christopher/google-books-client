@@ -11,17 +11,15 @@ export default class SearchApp extends React.Component {
         super(props);
         this.state = {
             items: [],
-            error: false,
-            searchTerm: 'flower growing',
-            printType: 'all',
-            bookType: 'no-filter',
+            error: null,
+            searchTerm: 'computers',
+            printType: 'all', //all, book, magazines
+            bookType: 'free-ebooks', //partial, full, free-ebooks, paid-ebooks, ebooks
         };
     }
 
     componentDidMount() {
-        // this.setState({
-        //     items,
-        // });
+        // Setup query parameters and coonstruct URL
         const baseUrl = 'https://www.googleapis.com/books/v1/volumes';
         let term = encodeURIComponent(this.state.searchTerm);
         let queryFilter = this.state.bookType !== 'no-filter' ? `&filter=${this.state.bookType}` : '';
@@ -29,27 +27,26 @@ export default class SearchApp extends React.Component {
         const maxResults = `&maxResults=10`;
         
         let queryUrl = `${baseUrl}?q=${term}${queryFilter}${printType}${maxResults}`;
-        console.log(queryUrl);
 
+        // Perform query against Google Books API
         fetch(queryUrl)
         .then(response => {
             if(!response.ok) {
-                throw new Error('A problem occurred with your request. Please try again later.');
+                throw new Error();
             }
 
             return response.json();
         })
         .then(data => {
-            console.log(data.items);
-            this.setState({
+            console.log(data);
+                this.setState({
                 items: data.items,
-                error: false,
+                error: null,
             });
         })
         .catch(e => {
-            console.log('Error: ', e.message);
-            this.setState({
-                error: true,
+                this.setState({
+                error: e,
             });
         });
     }
@@ -58,7 +55,10 @@ export default class SearchApp extends React.Component {
         return (
             <section className='search_client'>
                 <SearchBar />
-                <BookList books={this.state.items} />
+                {!(this.state.error)
+                        ? <BookList books={this.state.items} />
+                        : <div className='error'>An error occurred. Please try again later. Error: {this.state.error.message}</div>
+                }
             </section>
         );
     }

@@ -9,7 +9,7 @@ class BookList extends React.Component {
                 <Book
                     key={i}
                     title={book.volumeInfo.title}
-                    authors={book.volumeInfo.authors[0]}
+                    authors={'authors' in book.volumeInfo ? book.volumeInfo.authors : `Author(s) not listed`}
                     thumbnail={'imageLinks' in book.volumeInfo ? book.volumeInfo.imageLinks.thumbnail : ''}
                     description={book.volumeInfo.description}
                     previewLink={book.volumeInfo.previewLink}
