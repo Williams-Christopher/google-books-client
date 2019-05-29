@@ -14,7 +14,7 @@ export default class SearchApp extends React.Component {
             error: null,
             searchTerm: 'computers',
             printType: 'all', //all, book, magazines
-            bookType: 'free-ebooks', //partial, full, free-ebooks, paid-ebooks, ebooks
+            bookType: 'no-filter', //partial, full, free-ebooks, paid-ebooks, ebooks
         };
     }
 
